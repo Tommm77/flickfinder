@@ -1,10 +1,12 @@
 import {Hero} from "@/app/components/mainPage/hero";
 import RetroGrid from "@/app/components/magicui/retro-grid";
+import {Navbar} from "@/app/components/mainPage/navbar";
 
 export default function Home() {
   return (
       <div className="w-full h-full">
-          <RetroGrid className="h-96 mt-48"/>
+          <Navbar/>
+          <RetroGrid className="h-full "/>
           <div className="max-w-7xl mx-auto py-12 md:py-24 lg:py-32 xl:py-48">
               <Hero/>
               <div

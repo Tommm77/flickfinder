@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
 import RetroGrid from "@/app/components/magicui/retro-grid";
 import AnimatedGradientText from "@/app/components/magicui/animated-gradient-text";
+import {BsStars} from "react-icons/bs";
 
 export const Hero = () => {
     return (
@@ -21,12 +22,12 @@ export const Hero = () => {
                             Find the perfect movie for tonight with our AI-driven recommendation engine.
                         </p>
                     </div>
-                    <div className="w-full max-w-lg space-y-2">
+                    <div className="w-full max-w-5xl space-y-2">
                         <div className="relative">
-                            <Input className="pr-12 max-w-lg flex-1 rounded" placeholder="Ask AI for a movie..."
+                            <Input className="pr-12 max-w-5xl flex-1 rounded h-16" placeholder="Ask AI for a movie..."
                                    type="text"/>
-                            <Button className="absolute top-0 right-0 w-10 h-full rounded-r" size="icon" type="submit">
-                                <ArrowUpIcon className="w-4 h-4"/>
+                            <Button className="absolute top-0 right-0 w-20 h-full rounded-r" size="icon" type="submit">
+                                <BsStars className="w-6 h-6"/>
                                 <span className="sr-only">Send</span>
                             </Button>
                         </div>
