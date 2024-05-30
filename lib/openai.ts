@@ -1,12 +1,11 @@
-import { createOpenAI } from '@ai-sdk/openai';
+import OpenAI from "openai";
 
 const openAIKey = process.env.OPENAI_API_KEY;
 
 if (!openAIKey) {
-    throw new Error('OpenAI API key is missing');
+    throw new Error("Missing OPENAI_API_KEY environment variable");
 }
 
-export const openai = createOpenAI({
+export const openai = new OpenAI({
     apiKey: openAIKey,
-
 });
