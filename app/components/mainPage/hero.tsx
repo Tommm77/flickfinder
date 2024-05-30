@@ -24,12 +24,14 @@ export const Hero = () => {
                     <div className="w-full max-w-5xl space-y-2">
                         <div className="relative h-fit">
                             <NeonGradientCard className="w-full h-[4.5rem]">
-                            <Input className="pr-12 max-w-5xl flex-1 rounded-2xl h-16 bg-card" placeholder="Ask AI for a movie..."
-                                   type="text"/>
-                            <Button className="absolute top-1 right-1 w-20 h-16 rounded-r-2xl" size="icon" type="submit">
-                                <BsStars className="w-6 h-6"/>
-                                <span className="sr-only">Send</span>
-                            </Button>
+                            <form>
+                                <Input className="pr-12 max-w-5xl flex-1 rounded-2xl h-16 bg-card" placeholder="Ask AI for a movie..."
+                                       type="text"/>
+                                <Button className="absolute top-1 right-1 w-20 h-16 rounded-r-2xl" size="icon" type="submit">
+                                    <BsStars className="w-6 h-6"/>
+                                    <span className="sr-only">Send</span>
+                                </Button>
+                            </form>
                             </NeonGradientCard>
                         </div>
                         <p className="text-xs">
