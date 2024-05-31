@@ -83,7 +83,7 @@ export const MovieResults: React.FC<MovieResultsProps> = ({ movies, loading, err
                     ))}
                 </div>
             ) : (
-                <p>No movie recommendations found.</p>
+                <div className="text-center text-2xl text-accent">Ask something to see result...</div>
             )}
         </div>
     );
