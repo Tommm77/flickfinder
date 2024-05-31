@@ -43,13 +43,14 @@ export class TMDbService {
             const cast = await this.getMovieCast(movieId);
             const watchProviders = await this.getWatchProviders(movieId);
 
-            // Filter the required data
             return {
                 original_title: data.original_title,
                 overview: data.overview,
                 release_date: data.release_date,
                 vote_average: data.vote_average,
-                genres: data.genres.map((genre: { name: string }) => genre.name),
+                poster_path: data.poster_path,
+                genres: data.genres[0].name,
+                runtime: data.runtime,
                 cast: cast,
                 watch_providers: watchProviders
             };

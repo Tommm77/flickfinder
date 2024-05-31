@@ -7,12 +7,12 @@ import { Input } from '@/components/ui/input';
 import AnimatedGradientText from '@/app/components/magicui/animated-gradient-text';
 import { BsStars } from 'react-icons/bs';
 import { NeonGradientCard } from '@/app/components/magicui/neon-gradient-card';
-import {useMovieRecommendations} from "@/app/hooks/useMovieRecommendations";
+import { useMovieRecommendations } from "@/app/hooks/useMovieRecommendations";
+import {MovieResults} from "@/app/components/mainPage/movieresults";
 
 export const Hero = () => {
-
     const [prompt, setPrompt] = React.useState('');
-    const { movies} = useMovieRecommendations(prompt);
+    const { movies, loading, error } = useMovieRecommendations(prompt);
 
     const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -23,8 +23,8 @@ export const Hero = () => {
     }
 
     return (
-        <section key="1" className="w-full relative">
-            <div className="container px-4 md:px-6 relative z-10">
+        <section key="1" className="w-full">
+            <div className="container px-4 md:px-6 z-10">
                 <div className="flex flex-col items-center space-y-4 text-center">
                     <div className="space-y-2">
                         <AnimatedGradientText>
@@ -37,7 +37,7 @@ export const Hero = () => {
                         </p>
                     </div>
                     <div className="w-full max-w-5xl space-y-2">
-                        <div className="relative h-fit">
+                        <div className="h-fit">
                             <NeonGradientCard className="w-full h-[4.5rem]">
                                 <form onSubmit={handleFormSubmit}>
                                     <Input className="pr-12 max-w-5xl flex-1 rounded-2xl h-16 bg-card" placeholder="Ask AI for a movie..." type="text" name="prompt" />
@@ -55,9 +55,7 @@ export const Hero = () => {
                             </Link>
                         </p>
                     </div>
-                    <div>
-                        <pre>{JSON.stringify(movies, null, 2)}</pre>
-                    </div>
+                    <MovieResults movies={movies} loading={loading} error={error} />
                 </div>
             </div>
         </section>
