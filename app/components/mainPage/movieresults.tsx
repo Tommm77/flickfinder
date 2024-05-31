@@ -61,7 +61,7 @@ export const MovieResults: React.FC<MovieResultsProps> = ({ movies, loading, err
                                 <Image
                                     src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                                     alt={movie.original_title}
-                                    width={400}
+                                    width={600}
                                     height={200}
                                     className="object-cover rounded-2xl"
                                 />
@@ -70,7 +70,7 @@ export const MovieResults: React.FC<MovieResultsProps> = ({ movies, loading, err
                                 <h2 className="-translate-y-3 font-bold text-2xl">{movie.original_title}</h2>
                                 <div className="flex flex-wrap gap-1 justify-center">
                                     <Badge className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.release_date.split("-")[0]}</Badge>
-                                    <Badge className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.genres.join(", ")}</Badge>
+                                    <Badge className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.genres}</Badge>
                                     <Badge className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.runtime} mins</Badge>
                                 </div>
                                 <div className="flex items-center justify-center mt-2 gap-x-1">
