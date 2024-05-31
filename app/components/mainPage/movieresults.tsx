@@ -62,7 +62,7 @@ export const MovieResults: React.FC<MovieResultsProps> = ({ movies, loading, err
                                     src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                                     alt={movie.original_title}
                                     width={400}
-                                    height={400}
+                                    height={200}
                                     className="object-cover rounded-2xl"
                                 />
                             </CardHeader>
