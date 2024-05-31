@@ -7,31 +7,20 @@ import { Input } from '@/components/ui/input';
 import AnimatedGradientText from '@/app/components/magicui/animated-gradient-text';
 import { BsStars } from 'react-icons/bs';
 import { NeonGradientCard } from '@/app/components/magicui/neon-gradient-card';
+import {useMovieRecommendations} from "@/app/hooks/useMovieRecommendations";
 
 export const Hero = () => {
 
-    const [movies, setMovies] = React.useState([]);
+    const [prompt, setPrompt] = React.useState('');
+    const { movies} = useMovieRecommendations(prompt);
 
-    const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
         const prompt = formData.get('prompt') as string;
-
-        try {
-            const result = await fetch('/api/moviefinder', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ prompt }),
-            });
-            const json = await result.json();
-            setMovies(json.movie);
-        } catch (error) {
-            console.error('Error submitting form:', error);
-        }
-    };
+        setPrompt(prompt);
+    }
 
     return (
         <section key="1" className="w-full relative">
