@@ -20,7 +20,7 @@ export const Hero = () => {
         const formData = new FormData(e.currentTarget);
         const prompt = formData.get('prompt') as string;
         setPrompt(prompt);
-    }
+    };
 
     return (
         <section key="1" className="w-full">
@@ -37,7 +37,7 @@ export const Hero = () => {
                         </p>
                     </div>
                     <div className="w-full max-w-5xl space-y-2">
-                        <div className="h-fit">
+                        <div className="h-fit relative">
                             <NeonGradientCard className="w-full h-[4.5rem]">
                                 <form onSubmit={handleFormSubmit}>
                                     <Input className="pr-12 max-w-5xl flex-1 rounded-2xl h-16 bg-card" placeholder="Ask AI for a movie..." type="text" name="prompt" />
@@ -60,4 +60,4 @@ export const Hero = () => {
             </div>
         </section>
     );
-}
+};

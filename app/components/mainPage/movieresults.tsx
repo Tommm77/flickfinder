@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { Progress } from "@/components/ui/progress";
-import {Card, CardContent, CardHeader} from "@/components/ui/card";
-import {Badge} from "@/components/ui/badge";
-import StartRating from "@/app/components/mainPage/startRating";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import StartRating from "@/app/components/mainPage/startRating";
 
 interface MovieResultsProps {
     movies: any[];
@@ -54,9 +54,9 @@ export const MovieResults: React.FC<MovieResultsProps> = ({ movies, loading, err
     return (
         <div>
             {movies.length > 0 ? (
-                <div className="flex space-x-5">
+                <div className="flex flex-wrap gap-4 justify-center">
                     {movies.map((movie, index) => (
-                        <Card key={index} className="bg-accent">
+                        <Card key={index} className="bg-accent w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
                             <CardHeader className="bg-accent rounded-xl">
                                 <Image
                                     src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
@@ -68,53 +68,17 @@ export const MovieResults: React.FC<MovieResultsProps> = ({ movies, loading, err
                             </CardHeader>
                             <CardContent>
                                 <h2 className="-translate-y-3 font-bold text-2xl">{movie.original_title}</h2>
-                                <div className="flex items-center justify-center space-x-1">
-                                    <Badge
-                                        className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.release_date.split("-")[0]}
-                                    </Badge>
-                                    <Badge
-                                        className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.genres}
-                                    </Badge>
-                                    <Badge
-                                        className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.runtime} mins
-                                    </Badge>
+                                <div className="flex flex-wrap gap-1 justify-center">
+                                    <Badge className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.release_date.split("-")[0]}</Badge>
+                                    <Badge className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.genres.join(", ")}</Badge>
+                                    <Badge className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.runtime} mins</Badge>
                                 </div>
                                 <div className="flex items-center justify-center mt-2 gap-x-1">
                                     <p>Rating :</p>
-                                    <StartRating rating={movie.vote_average / 2}/>
+                                    <StartRating rating={movie.vote_average / 2} />
                                 </div>
                                 <p className="mt-2 text-primary">Hover the Card to see more details</p>
                             </CardContent>
-                            {/*<h2>{movie.original_title}</h2>
-                            <p>{movie.overview}</p>
-                            <p>Release Date: {movie.release_date}</p>
-                            <p>Rating: {movie.vote_average}</p>
-                            <p>Genres: {movie.genres.join(', ')}</p>
-                            <h3>Cast:</h3>
-                            <ul>
-                                {movie.cast.map((actor: any, idx: number) => (
-                                    <li key={idx}>{actor.name} as {actor.character}</li>
-                                ))}
-                            </ul>
-                            <h3>Watch Providers:</h3>
-                            <ul>
-                                {Object.entries(movie.watch_providers).map(([country, provider]: [string, any]) => (
-                                    <li key={country}>
-                                        <strong>{country}:</strong>
-                                        <ul>
-                                            {provider.flatrate && provider.flatrate.map((p: any) => (
-                                                <li key={p.provider_id}>{p.provider_name}</li>
-                                            ))}
-                                            {provider.rent && provider.rent.map((p: any) => (
-                                                <li key={p.provider_id}>Rent: {p.provider_name}</li>
-                                            ))}
-                                            {provider.buy && provider.buy.map((p: any) => (
-                                                <li key={p.provider_id}>Buy: {p.provider_name}</li>
-                                            ))}
-                                        </ul>
-                                    </li>
-                                ))}
-                            </ul>*/}
                         </Card>
                     ))}
                 </div>
