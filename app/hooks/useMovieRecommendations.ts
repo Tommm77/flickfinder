@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 export function useMovieRecommendations(prompt: string) {
-    const [movies, setMovies] = useState<string[]>([]);
+    const [movies, setMovies] = useState<any[]>([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -18,7 +18,7 @@ export function useMovieRecommendations(prompt: string) {
                     body: JSON.stringify({ prompt }),
                 });
                 const data = await res.json();
-                const moviesArray = data.movie;
+                const moviesArray = data.movies;
                 setMovies(moviesArray);
             } catch (error) {
                 console.error('Error fetching movie recommendations:', error);
@@ -28,7 +28,7 @@ export function useMovieRecommendations(prompt: string) {
         };
 
         if (prompt) {
-            fetchMovieRecommendations().then(r => r);
+            fetchMovieRecommendations();
         }
     }, [prompt]);
 
