@@ -73,10 +73,18 @@ export class TMDbService {
         try {
             const res = await fetch(url, options);
             const data = await res.json();
-            return data.cast.slice(0, 10).map((actor: { name: string, character: string }) => ({
+
+            const director = data.crew.find((member: { job: string }) => member.job === 'Director');
+            const actors = data.cast.slice(0, 10).map((actor: { name: string, character: string, profile_path: string }) => ({
                 name: actor.name,
-                character: actor.character
+                character: actor.character,
+                image: actor.profile_path
             }));
+
+            return {
+                director: director ? director.name : 'Unknown',
+                cast: actors
+            };
         } catch (error) {
             console.error('Error fetching movie cast:', error);
             throw new Error('Internal Server Error');
