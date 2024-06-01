@@ -104,9 +104,13 @@ export class TMDbService {
         try {
             const res = await fetch(url, options);
             const data = await res.json();
+            const providers = data.results.FR;
 
-            // Assuming you want to get all available providers
-            return data.results.FR;
+            return {
+                rent: providers.rent || [],
+                flatrate: providers.flatrate || [],
+                buy: providers.buy || [],
+            };
         } catch (error) {
             console.error('Error fetching watch providers:', error);
             throw new Error('Internal Server Error');
