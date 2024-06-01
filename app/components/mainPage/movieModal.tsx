@@ -4,7 +4,6 @@ import {
     DialogDescription,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
@@ -31,7 +30,7 @@ const MovieModal: React.FC<MovieModalProps> = ({ isOpen, closeModal, movie }) =>
 
     return (
         <Dialog open={isOpen} onOpenChange={closeModal}>
-            <DialogContent className="max-w-xl">
+            <DialogContent className="h-2/3 overflow-y-auto rounded-2xl">
                 <Image
                     src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                     alt={movie.original_title}
@@ -39,7 +38,7 @@ const MovieModal: React.FC<MovieModalProps> = ({ isOpen, closeModal, movie }) =>
                     height={200}
                     className="object-cover rounded-t-2xl w-full h-[40rem]"
                 />
-                <DialogHeader className="flex flex-col items-center justify-center px-10 -mt-8 w-full">
+                <DialogHeader className="flex flex-col items-center justify-center px-10 -mt-8 w-full rounded-2xl">
                     <DialogTitle className="text-3xl font-bold">{movie.original_title}</DialogTitle>
                     <div className={cn("flex flex-wrap gap-1 justify-center pt-3")}>
                         <Badge className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.release_date.split("-")[0]}</Badge>
@@ -50,7 +49,8 @@ const MovieModal: React.FC<MovieModalProps> = ({ isOpen, closeModal, movie }) =>
                         <p>Rating :</p>
                         <StartRating rating={movie.vote_average / 2} />
                     </div>
-                    <div className="flex items-start flex-col space-y-4 w-fit">
+                </DialogHeader>
+                    <div className="flex items-start flex-col space-y-4 p-10">
                         <div>
                             <p className="text-lg font-bold">Overview :</p>
                             <DialogDescription className="text-lg mt-1">{movie.overview}</DialogDescription>
@@ -63,20 +63,24 @@ const MovieModal: React.FC<MovieModalProps> = ({ isOpen, closeModal, movie }) =>
                             <p className="text-lg font-bold">Directed by :</p>
                             <p className="text-lg ml-2">{movie.cast.director}</p>
                         </div>
-                        <div className="mt-4 max-w-full">
-                            <div className="flex gap-1 justify-center mt-2 space-x-5 max-w-full overflow-x-auto whitespace-nowrap">
+                        <div className="mt-4 w-full">
+                            <div className="grid grid-cols-3 gap-4">
                                 {movie.cast.cast.map((actor: any, index: number) => (
-                                    <Avatar key={index} className="size-14">
-                                        <AvatarImage src={`https://image.tmdb.org/t/p/original/${actor.image}`} alt="@shadcn" />
-                                        <AvatarFallback>CN</AvatarFallback>
-                                    </Avatar>
+                                    <div key={index} className="flex flex-col items-center justify-center">
+                                        <Avatar className="size-20">
+                                            <AvatarImage src={`https://image.tmdb.org/t/p/original/${actor.image}`} alt="@shadcn" />
+                                            <AvatarFallback>CN</AvatarFallback>
+                                        </Avatar>
+                                        <p className="text-lg ml-2 text-center">{actor.name}</p>
+                                        <p className="text-lg ml-2 text-muted-foreground text-center">{actor.character}</p>
+                                    </div>
                                 ))}
                             </div>
                         </div>
                     </div>
-                </DialogHeader>
             </DialogContent>
         </Dialog>
+
     );
 };
 

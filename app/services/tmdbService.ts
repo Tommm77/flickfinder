@@ -75,7 +75,7 @@ export class TMDbService {
             const data = await res.json();
 
             const director = data.crew.find((member: { job: string }) => member.job === 'Director');
-            const actors = data.cast.slice(0, 10).map((actor: { name: string, character: string, profile_path: string }) => ({
+            const actors = data.cast.slice(0, 9).map((actor: { name: string, character: string, profile_path: string }) => ({
                 name: actor.name,
                 character: actor.character,
                 image: actor.profile_path
