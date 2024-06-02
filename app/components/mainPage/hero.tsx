@@ -28,7 +28,6 @@ export const Hero = () => {
 
     return (
         <section key="1" className="w-full">
-            <div className="container px-4 md:px-6 z-10 relative">
                 <AnimatedGridPattern
                     numSquares={20}
                     maxOpacity={0.1}
@@ -36,9 +35,10 @@ export const Hero = () => {
                     repeatDelay={1}
                     className={cn(
                         "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]",
-                        "inset-x-0 inset-y-[-20%] h-[100%] skew-y-12",
+                        "inset-x-0 inset-y-[-10%] h-[100%] skew-y-12",
                     )}
                 />
+            <div className="container px-4 md:px-6 z-10 relative">
                 <div className="flex flex-col items-center space-y-4 text-center">
                     <div className="z-10 flex items-center justify-center mb-5">
                         <AnimatedGradientButton className="cursor-pointer">
