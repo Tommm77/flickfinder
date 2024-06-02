@@ -55,7 +55,7 @@ export const MovieResults: React.FC<MovieResultsProps> = ({ movies, loading, err
 
     if (loading) {
         return (
-            <div className="absolute top-4 left-0 right-0 flex items-center justify-center max-w-sm mx-auto">
+            <div className="absolute -top-40 left-0 right-0 flex items-center justify-center max-w-sm mx-auto">
                 <Progress value={progress} />
             </div>
         );
@@ -74,25 +74,28 @@ export const MovieResults: React.FC<MovieResultsProps> = ({ movies, loading, err
                             className="bg-accent w-full md:w-1/2 lg:w-1/3 xl:w-1/2 group h-fit hover:scale-110 transition ease-in-out cursor-pointer"
                             onClick={() => openModal(movie)}
                         >
-                            <CardHeader className="bg-accent rounded-xl">
+                            <CardHeader className="bg-accent rounded-t-xl">
                                 <Image
                                     src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                                     alt={movie.original_title}
                                     width={600}
                                     height={200}
-                                    className="object-cover rounded-2xl"
+                                    className="object-cover rounded-t-2xl"
                                 />
                             </CardHeader>
                             <CardContent>
                                 <h2 className="-translate-y-3 font-bold text-2xl">{movie.original_title}</h2>
                                 <div className="flex flex-wrap gap-1 justify-center">
-                                    <Badge className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.release_date.split("-")[0]}</Badge>
-                                    <Badge className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.genres}</Badge>
-                                    <Badge className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.runtime} mins</Badge>
+                                    <Badge
+                                        className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.release_date.split("-")[0]}</Badge>
+                                    <Badge
+                                        className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.genres}</Badge>
+                                    <Badge
+                                        className="bg-secondary rounded-2xl text-accent-foreground text-md">{movie.runtime} mins</Badge>
                                 </div>
                                 <div className="flex items-center justify-center mt-2 gap-x-1">
                                     <p>Rating :</p>
-                                    <StartRating rating={movie.vote_average / 2} />
+                                    <StartRating rating={movie.vote_average / 2}/>
                                 </div>
                                 <p className="mt-2 text-primary">Hover the Card to see more details</p>
                             </CardContent>

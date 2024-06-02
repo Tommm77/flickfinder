@@ -75,12 +75,12 @@ export const Hero = () => {
                                 </h1>
                             </AnimatedGradientText>
                         </div>
-                        <p className="mx-auto max-w-[800px] md:text-xl text-accent">
+                        <p className="mx-auto max-w-[800px] md:text-xl text-accent-foreground">
                             Find the perfect movie for tonight with our AI-driven recommendation engine.
                         </p>
                     </div>
                     <div className="w-full max-w-5xl space-y-2 pt-2">
-                        <div className="h-fit relative flex items-center justify-center">
+                        <div className="h-fit flex items-center justify-center">
                             <NeonGradientCard className="w-2/3 h-[3.5rem]">
                                 <form onSubmit={handleFormSubmit}>
                                     <Input className="pr-12 max-w-5xl flex-1 rounded-2xl h-12 bg-card text-accent"
