@@ -11,6 +11,8 @@ import { useMovieRecommendations } from "@/app/hooks/useMovieRecommendations";
 import {MovieResults} from "@/app/components/mainPage/movieresults";
 import AnimatedGridPattern from "@/app/components/magicui/animated-grid-pattern";
 import {cn} from "@/lib/utils";
+import AnimatedGradientButton from "@/app/components/magicui/animated-gradient-button";
+import {ChevronRightIcon} from "@radix-ui/react-icons";
 
 export const Hero = () => {
     const [prompt, setPrompt] = React.useState('');
@@ -38,6 +40,20 @@ export const Hero = () => {
                     )}
                 />
                 <div className="flex flex-col items-center space-y-4 text-center">
+                    <div className="z-10 flex items-center justify-center mb-5">
+                        <AnimatedGradientButton className="cursor-pointer">
+                            🚀 <hr className="mx-2 h-4 w-[1px] shrink-0 bg-transparent"/>{" "}
+                            <span
+                                className={cn(
+                                    `inline animate-gradient bg-gradient-to-r from-[#dbf26e] via-[#61fa74] to-[#dbf26e] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent`,
+                                )}
+                            >
+          Welcome to the beta
+        </span>
+                            <ChevronRightIcon
+                                className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5"/>
+                        </AnimatedGradientButton>
+                    </div>
                     <div className="space-y-2">
                         <div className="flex justify-center items-center space-x-5">
                             <AnimatedGradientText>
@@ -67,7 +83,7 @@ export const Hero = () => {
                         <div className="h-fit relative flex items-center justify-center">
                             <NeonGradientCard className="w-2/3 h-[3.5rem]">
                                 <form onSubmit={handleFormSubmit}>
-                                    <Input className="pr-12 max-w-5xl flex-1 rounded-2xl h-12 bg-card"
+                                    <Input className="pr-12 max-w-5xl flex-1 rounded-2xl h-12 bg-card text-accent"
                                            placeholder="Ask AI for a movie..." type="text" name="prompt"/>
                                     <Button className="absolute top-1 right-1 w-16 h-12 rounded-r-2xl" size="icon"
                                             type="submit">
@@ -84,7 +100,7 @@ export const Hero = () => {
                             </Link>
                         </p>
                     </div>
-                    <MovieResults movies={movies} loading={loading} error={error} />
+                    <MovieResults movies={movies} loading={loading} error={error}/>
                 </div>
             </div>
         </section>
