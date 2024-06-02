@@ -100,7 +100,7 @@ export const MovieResults: React.FC<MovieResultsProps> = ({ movies, loading, err
                     ))}
                 </div>
             ) : (
-                <div className="text-center text-2xl text-accent">Ask something to see result...</div>
+                <div className="text-center text-2xl text-accent hidden">Ask something to see result...</div>
             )}
             {selectedMovie && (
                 <MovieModal
