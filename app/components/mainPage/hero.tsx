@@ -67,9 +67,9 @@ export const Hero = () => {
                         <div className="h-fit relative flex items-center justify-center">
                             <NeonGradientCard className="w-2/3 h-[3.5rem]">
                                 <form onSubmit={handleFormSubmit}>
-                                    <Input className="pr-12 max-w-5xl flex-1 rounded-2xl h-16 bg-card"
+                                    <Input className="pr-12 max-w-5xl flex-1 rounded-2xl h-12 bg-card"
                                            placeholder="Ask AI for a movie..." type="text" name="prompt"/>
-                                    <Button className="absolute top-1 right-1 w-16 h-16 rounded-r-2xl" size="icon"
+                                    <Button className="absolute top-1 right-1 w-16 h-12 rounded-r-2xl" size="icon"
                                             type="submit">
                                         <BsStars className="w-6 h-6"/>
                                         <span className="sr-only">Send</span>
@@ -77,7 +77,7 @@ export const Hero = () => {
                                 </form>
                             </NeonGradientCard>
                         </div>
-                        <p className="text-xs">
+                        <p className="text-xs text-accent">
                             Sign up to unlock exclusive features.
                             <Link className="underline underline-offset-2" href="#">
                                 Terms & Conditions
