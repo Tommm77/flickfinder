@@ -2,14 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { Progress } from "@/components/ui/progress";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
 import MovieModal from '@/app/components/mainPage/movieModal';
 import StartRating from "@/app/components/mainPage/startRating";
 import {FastAverageColor} from "fast-average-color";
 import {cn} from "@/lib/utils";
-import {ChevronRightIcon} from "@radix-ui/react-icons";
 import AnimatedGradientButton from "@/app/components/magicui/animated-gradient-button";
 import AnimatedGradientText from "@/app/components/magicui/animated-gradient-text";
 

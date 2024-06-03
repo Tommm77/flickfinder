@@ -116,4 +116,24 @@ export class TMDbService {
             throw new Error('Internal Server Error');
         }
     }
+
+    async getPopularMovies() {
+        const url = `${TMDB_API_URL}/movie/popular?language=en-US&page=1`;
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${TMDB_API_KEY}`
+            }
+        };
+
+        try {
+            const res = await fetch(url, options);
+            const data = await res.json();
+            return data.results;
+        } catch (error) {
+            console.error('Error fetching popular movies:', error);
+            throw new Error('Internal Server Error');
+        }
+    }
 }
