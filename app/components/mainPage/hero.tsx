@@ -30,12 +30,12 @@ export const Hero = () => {
         <section key="1" className="w-full">
                 <AnimatedGridPattern
                     numSquares={20}
-                    maxOpacity={0.1}
+                    maxOpacity={0.3}
                     duration={3}
                     repeatDelay={1}
                     className={cn(
                         "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]",
-                        "inset-x-0 inset-y-[-10%] h-[100%] skew-y-12",
+                        "inset-x-0 inset-y-[-15%] h-[100%] skew-y-12",
                     )}
                 />
             <div className="container px-4 md:px-6 z-10 relative">
@@ -83,7 +83,7 @@ export const Hero = () => {
                         <div className="h-fit flex items-center justify-center">
                             <NeonGradientCard className="w-2/3 h-[3.5rem]">
                                 <form onSubmit={handleFormSubmit}>
-                                    <Input className="pr-12 max-w-5xl flex-1 rounded-2xl h-12 bg-card text-accent"
+                                    <Input className="pr-12 max-w-5xl flex-1 rounded-2xl h-12 bg-card text-accent-foreground"
                                            placeholder="Ask AI for a movie..." type="text" name="prompt"/>
                                     <Button className="absolute top-1 right-1 w-16 h-12 rounded-r-2xl" size="icon"
                                             type="submit">
@@ -93,7 +93,7 @@ export const Hero = () => {
                                 </form>
                             </NeonGradientCard>
                         </div>
-                        <p className="text-xs text-accent">
+                        <p className="text-xs text-accent-foreground">
                             Sign up to unlock exclusive features.
                             <Link className="underline underline-offset-2" href="#">
                                 Terms & Conditions

@@ -104,12 +104,12 @@ export class TMDbService {
         try {
             const res = await fetch(url, options);
             const data = await res.json();
-            const providers = data.results.FR;
+            const providers = data.results?.FR || data.results.US;
 
             return {
-                rent: providers.rent || [],
-                flatrate: providers.flatrate || [],
-                buy: providers.buy || [],
+                rent: providers?.rent || [],
+                flatrate: providers?.flatrate || [],
+                buy: providers?.buy || [],
             };
         } catch (error) {
             console.error('Error fetching watch providers:', error);
