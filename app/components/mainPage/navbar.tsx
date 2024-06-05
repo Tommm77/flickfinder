@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { CustomIcon } from "@/app/components/icons/icons";
 import { Button } from "@/components/ui/button";
+import {signIn} from "@/lib/auth";
+import {LoggedInButton} from "@/app/components/auth/LoggedInButton";
 
 export const Navbar = () => {
     return (
@@ -10,7 +12,7 @@ export const Navbar = () => {
             </Link>
             <div className="flex items-center gap-4 md:gap-14 mt-2">
                 <a className="text-lg rounded">Pricing</a>
-                <Button className="text-sm rounded mr-5">Sign In</Button>
+                <LoggedInButton />
             </div>
         </header>
     );
