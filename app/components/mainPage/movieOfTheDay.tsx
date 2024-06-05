@@ -103,7 +103,7 @@ export const MovieOfTheDay = () => {
 
 
     const formatDate = (date: Date) => {
-        return date.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+        return date.toLocaleDateString('us-US', { year: 'numeric', month: 'long', day: 'numeric' });
     };
 
     if (loading) return <p>Loading...</p>;
