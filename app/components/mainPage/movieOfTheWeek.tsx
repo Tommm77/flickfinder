@@ -107,7 +107,7 @@ export const MovieOfTheWeek = () => {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div className="mt-10">
+        <div className="mt-10 hidden">
             <AnimatedGradientText>
                 <h1 className="animate-gradient bg-gradient-to-r from-[#dbf26e] via-[#61fa74] to-[#dbf26e] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent text-4xl text-center font-bold">
                     Movie of the Week
