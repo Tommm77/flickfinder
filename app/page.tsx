@@ -1,6 +1,7 @@
 import { Hero } from "@/app/components/mainPage/hero";
 import { Navbar } from "@/app/components/mainPage/navbar";
 import {MovieOfTheWeek} from "@/app/components/mainPage/movieOfTheWeek";
+import {MovieOfTheDay} from "@/app/components/mainPage/movieOfTheDay";
 
 export default function Home() {
     return (
@@ -11,6 +12,7 @@ export default function Home() {
             </div>
             <div className="max-w-7xl mx-auto">
                 <MovieOfTheWeek />
+                <MovieOfTheDay />
             </div>
         </div>
     );

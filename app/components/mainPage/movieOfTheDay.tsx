@@ -1,20 +1,19 @@
 "use client";
 
-// components/MovieOfTheWeek.tsx
-import React, { useState } from "react";
-import { cn } from "@/lib/utils";
-import Marquee from "@/app/components/magicui/marquee";
-import { Card, CardHeader } from "@/components/ui/card";
+import AnimatedGradientText from "@/app/components/magicui/animated-gradient-text";
+import React, {useState} from "react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import {Card, CardHeader} from "@/components/ui/card";
+import {Movie} from "@/app/types/movieTypes";
 import Image from "next/image";
 import StartRating from "@/app/components/mainPage/startRating";
-import MovieModal from '@/app/components/mainPage/movieModal';
-import AnimatedGradientText from "@/app/components/magicui/animated-gradient-text";
-import {usePopularMovies} from "@/app/hooks/usePopularMovies";
 import AnimatedGradientButton from "@/app/components/magicui/animated-gradient-button";
-import {Movie} from "@/app/types/movieTypes";
+import {cn} from "@/lib/utils";
+import {useMoviesOfTheWeek} from "@/app/hooks/useMovieOfTheWeek";
+import MovieModal from "@/app/components/mainPage/movieModal";
 
-export const MovieOfTheWeek = () => {
-    const { movies, loading, error } = usePopularMovies();
+export const MovieOfTheDay = () => {
+    const { movies, loading, error } = useMoviesOfTheWeek();
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -28,8 +27,6 @@ export const MovieOfTheWeek = () => {
         setIsModalOpen(false);
     };
 
-    const firstRow = movies.slice(0, movies.length / 2);
-    const secondRow = movies.slice(movies.length / 2);
 
     const MovieCard = ({
                            movie
@@ -103,30 +100,40 @@ export const MovieOfTheWeek = () => {
         );
     };
 
+
+
+    const formatDate = (date: Date) => {
+        return date.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+    };
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div className="mt-10 hidden">
+        <div className="my-10 flex flex-col justify-center items-center">
             <AnimatedGradientText>
                 <h1 className="animate-gradient bg-gradient-to-r from-[#dbf26e] via-[#61fa74] to-[#dbf26e] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent text-4xl text-center font-bold">
-                    Movie of the Week
+                    Movie of the Day
                 </h1>
             </AnimatedGradientText>
-            <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background py-20 md:shadow-xl">
-                <Marquee pauseOnHover className="[--duration:20s]">
-                    {firstRow.map((movie) => (
-                        <MovieCard key={movie.id} movie={movie} />
-                    ))}
-                </Marquee>
-                <Marquee reverse pauseOnHover className="[--duration:20s]">
-                    {secondRow.map((movie) => (
-                        <MovieCard key={movie.id} movie={movie} />
-                    ))}
-                </Marquee>
-                <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background dark:from-background"></div>
-                <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background dark:from-background"></div>
-            </div>
+            <Carousel className="w-full max-w-xs mt-5">
+                <CarouselContent>
+                    {Array.from({ length: 7 }).map((_, index) => {
+                        let today = new Date();
+                        today.setDate(today.getDate() + index - 6);
+                        return (
+                            <CarouselItem key={index}>
+                                <h2 className="text-center">{formatDate(today)}</h2>
+                                <div className="p-1">
+                                    {movies[index] && <MovieCard movie={movies[index]} />}
+                                </div>
+                            </CarouselItem>
+                        );
+                    })}
+                </CarouselContent>
+                <CarouselPrevious className="text-white" />
+                <CarouselNext />
+            </Carousel>
             {selectedMovie && (
                 <MovieModal
                     isOpen={isModalOpen}
@@ -136,4 +143,4 @@ export const MovieOfTheWeek = () => {
             )}
         </div>
     );
-};
+}

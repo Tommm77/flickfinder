@@ -136,4 +136,44 @@ export class TMDbService {
             throw new Error('Internal Server Error');
         }
     }
+
+    async getMoviesOfTheWeek() {
+        const dateNow = new Date();
+        const dateStartOfYear = new Date(dateNow.getFullYear(), 0, 0);
+        const diffTime = Math.abs(dateNow.getTime() - dateStartOfYear.getTime());
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        let page = Math.ceil(diffDays / 20);
+        let url = `${TMDB_API_URL}/movie/popular?language=en-US&page=${page}`;
+
+        const movies = [];
+        let fetchedMovies = 0;
+
+        while (fetchedMovies < 7) {
+            try {
+                const res = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: `Bearer ${TMDB_API_KEY}`
+                    }
+                });
+                const data = await res.json();
+                const moviesOnPage = data.results;
+                const remainingMoviesNeeded = 7 - fetchedMovies;
+                const moviesToAdd = moviesOnPage.slice(0, remainingMoviesNeeded);
+                movies.push(...moviesToAdd);
+                fetchedMovies += moviesToAdd.length;
+                if (fetchedMovies < 7) {
+                    url = `${TMDB_API_URL}/movie/popular?language=en-US&page=${page + 1}`;
+                }
+            } catch (error) {
+                console.error('Error fetching movies of the week:', error);
+                throw new Error('Internal Server Error');
+            }
+        }
+
+        return movies;
+    }
+
 }
