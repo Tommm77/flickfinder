@@ -35,7 +35,7 @@ export const Hero = () => {
                     repeatDelay={1}
                     className={cn(
                         "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]",
-                        "inset-x-0 inset-y-[-15%] h-[100%] skew-y-12 hidden",
+                        "inset-x-0 inset-y-[-15%] h-[100%] skew-y-12",
                     )}
                 />
             <div className="container px-4 md:px-6 z-10 relative">
